@@ -1,41 +1,16 @@
-import type { Job } from "@/assets/mockData";
-import { Briefcase, Building2, MapPin } from "lucide-react";
-import JobDetailsModal from "./JobDetailsModal";
-import { useState } from "react";
-import SuccessToast from "./SuccessToast";
+import type { Job } from "@/assets/mockData"
+import { getJobTypeBadgeColor } from "@/utils/colorFunctions";
+import { Building2, MapPin } from "lucide-react";
 
 interface JobCardProps {
-  jobList: Job[];
-  selectedJob: Job | null;
+  job: Job;
   setSelectedJob: (job: Job | null) => void;
 }
 
-const JobCard = ({ jobList, selectedJob, setSelectedJob }: JobCardProps) => {
-  const [showSuccess, setShowSuccess] = useState(false);
-  const getJobTypeBadgeColor = (jobType: string) => {
-    switch (jobType.toLowerCase()) {
-      case "full-time":
-        return "bg-blue-100 text-blue-700";
-      case "internship":
-        return "bg-purple-100 text-purple-700";
-      case "remote":
-        return "bg-green-100 text-green-700";
-      default:
-        return "bg-gray-100 text-gray-700";
-    }
-  };
 
-  const handleApply = () => {
-    setSelectedJob(null);
-    setShowSuccess(true);
-    setTimeout(() => setShowSuccess(false), 5000);
-  };
-
+const JobCard = ({job,setSelectedJob}:JobCardProps) => {
   return (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {jobList.map((job) => (
-          <div
+    <div
             key={job.id}
             className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow duration-200"
           >
@@ -71,34 +46,7 @@ const JobCard = ({ jobList, selectedJob, setSelectedJob }: JobCardProps) => {
               View Details
             </button>
           </div>
-        ))}
-      </div>
-      {/* No Results */}
-      {jobList.length === 0 && (
-        <div className="text-center py-12">
-          <Briefcase className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-          <p className="text-gray-500 text-lg">
-            No jobs found matching your search
-          </p>
-          <p className="text-gray-400 mt-2">
-            Try adjusting your search criteria
-          </p>
-        </div>
-      )}
+  )
+}
 
-      {/* Job Details Modal */}
-      {selectedJob && (
-        <JobDetailsModal
-          job={selectedJob}
-          onClose={() => setSelectedJob(null)}
-          onApply={handleApply}
-        />
-      )}
-
-      {/* Success Toast */}
-      {showSuccess && <SuccessToast />}
-    </div>
-  );
-};
-
-export default JobCard;
+export default JobCard

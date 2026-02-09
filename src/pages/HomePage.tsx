@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import { MOCK_JOBS, type Job } from "@/assets/mockData";
-import JobCard from "@/components/JobCard";
+import JobList from "@/components/JobList";
 
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -34,7 +34,7 @@ const HomePage = () => {
           {filteredJobs.length} {filteredJobs.length === 1 ? "job" : "jobs"}{" "}
           found
         </p>
-        <JobCard jobList={filteredJobs} selectedJob={selectedJob} setSelectedJob={setSelectedJob} />
+        <JobList jobList={filteredJobs} selectedJob={selectedJob} setSelectedJob={setSelectedJob} />
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
-import type { Job } from '@/assets/mockData';
-import { X, MapPin, Building2, Briefcase } from 'lucide-react';
+import type { Job } from "@/assets/mockData";
+import { getJobTypeBadgeColor } from "@/utils/colorFunctions";
+import { X, MapPin, Building2, Briefcase } from "lucide-react";
 
 interface JobDetailsModalProps {
   job: Job;
@@ -7,23 +8,14 @@ interface JobDetailsModalProps {
   onApply: () => void;
 }
 
-export default function JobDetailsModal({ job, onClose, onApply }: JobDetailsModalProps) {
-  const getJobTypeBadgeColor = (jobType: string) => {
-    switch (jobType.toLowerCase()) {
-      case 'full-time':
-        return 'bg-blue-100 text-blue-700';
-      case 'internship':
-        return 'bg-purple-100 text-purple-700';
-      case 'remote':
-        return 'bg-green-100 text-green-700';
-      default:
-        return 'bg-gray-100 text-gray-700';
-    }
-  };
-
+export default function JobDetailsModal({
+  job,
+  onClose,
+  onApply,
+}: JobDetailsModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-      <div 
+      <div
         className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
@@ -55,7 +47,9 @@ export default function JobDetailsModal({ job, onClose, onApply }: JobDetailsMod
         <div className="px-6 py-6">
           {/* Job Type Badge */}
           <div className="mb-6">
-            <span className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium ${getJobTypeBadgeColor(job.jobType)}`}>
+            <span
+              className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium ${getJobTypeBadgeColor(job.jobType)}`}
+            >
               <Briefcase className="w-4 h-4" />
               {job.jobType}
             </span>
@@ -64,9 +58,7 @@ export default function JobDetailsModal({ job, onClose, onApply }: JobDetailsMod
           {/* Job Description */}
           <div className="mb-6">
             <h3 className="mb-3">Job Description</h3>
-            <p className="text-gray-700 leading-relaxed">
-              {job.description}
-            </p>
+            <p className="text-gray-700 leading-relaxed">{job.description}</p>
           </div>
 
           {/* Required Skills */}
