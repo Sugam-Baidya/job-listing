@@ -3,7 +3,7 @@ import { Briefcase} from "lucide-react";
 import JobDetailsModal from "./JobDetailsModal";
 import { useState } from "react";
 import SuccessToast from "./SuccessToast";
-import JobCard from "./jobCard";
+import JobCard from "./JobCard";
 
 interface JobListProps {
   jobList: Job[];
