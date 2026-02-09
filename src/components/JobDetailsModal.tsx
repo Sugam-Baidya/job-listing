@@ -1,5 +1,5 @@
 import type { Job } from "@/assets/mockData";
-import { getJobTypeBadgeColor } from "@/utils/colorFunctions";
+import { getJobTypeBadgeColor } from "@/lib/utils";
 import { X, MapPin, Building2, Briefcase } from "lucide-react";
 
 interface JobDetailsModalProps {
